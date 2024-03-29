@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_event-object</title>
+    <style>
+        .area{
+            width: 300px;
+            height: 300px;
+            background: lightsalmon;
+        }
+    </style>
+</head>
+<body>
+    <h1>01. 이벤트 객체</h1>
+    <pre>
+        이벤트 발생 시 이벤트에 관련 된 다양한 정보를 가진 이벤트 객체가
+        동적으로 생성된다.
+        생성된 이벤트 객체는 이벤트 핸들러의 첫 번쨰 인수로 전달된다.
+    </pre>
+
+    <h2 class="message">아무 곳이나 클릭하면 위치를 알려드립니다. </h2>
+    <script>
+        const $msg = document.querySelector('.message');
+
+        function showCoords(e){
+            console.log(e);
+            $msg.textContent = `clientX :${e.clientX}, clientY : ${e.clientY}`; 
+        }
+
+        document.onclick = showCoords;
+
+    </script>
+    <pre>
+        이벤트 핸들러 어트리뷰트 방식으로 이벤트 핸들러를 등록했다면?
+    </pre>
+
+    <!-- 전달 인자를 넘길때 반드시 event 라는 이름을 사용해야한다. -->
+    <div class="area" onclick="showDivCoords(event)">
+        이 영역을 내부를 클릭했을 시 좌표
+    </div>
+    <script>
+        
+        const $area = document.querySelector('.area');
+        // onclick 등등 이벤트 핸들러의 첫 번쨰 매개변수의 이름이 암묵적으로 event로
+        // 명명되기 떄문에 event가 아닌 다른 이름으로는 전달 받을 수 없다.
+        function showDivCoords(e){
+            console.log(e);
+            $area.textContent = `clientX :${e.clientX}, clientY : ${e.clientY}`; 
+    
+        }
+
+    </script>
+</body>
+</html>
